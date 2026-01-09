@@ -1,25 +1,33 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { ExternalLink, Github } from 'lucide-react';
+import { ExternalLink } from 'lucide-react';
 import type { Project } from '@/data/projects';
+import type { Accomplishment } from '@/data/accomplishments';
 
 interface ProjectCardProps {
-  project: Project;
+  project: Project | Accomplishment;
   index: number;
+  showLink?: boolean;
 }
 
-export default function ProjectCard({ project, index }: ProjectCardProps) {
-  const getCategoryColor = (category: Project['category']) => {
-    const colors = {
+const isProject = (item: Project | Accomplishment): item is Project => {
+  return 'featured' in item;
+};
+
+export default function ProjectCard({ project, index, showLink = false }: ProjectCardProps) {
+  const getCategoryColor = (category: string) => {
+    const colors: Record<string, string> = {
       nlp: 'from-blue-500/20 to-cyan-500/20 border-blue-500/30',
       'computer-vision': 'from-purple-500/20 to-pink-500/20 border-purple-500/30',
       rl: 'from-orange-500/20 to-red-500/20 border-orange-500/30',
       web: 'from-green-500/20 to-emerald-500/20 border-green-500/30',
       mlops: 'from-indigo-500/20 to-purple-500/20 border-indigo-500/30',
     };
-    return colors[category];
+    return colors[category] || colors.web;
   };
+
+  const projectData = isProject(project) ? project : project;
 
   return (
     <motion.div
@@ -28,16 +36,16 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
       transition={{ duration: 0.5, delay: index * 0.1 }}
       viewport={{ once: true }}
       className={`glass rounded-xl p-6 hover:bg-white/10 transition-all duration-300 border-l-4 bg-gradient-to-br ${getCategoryColor(
-        project.category
+        projectData.category
       )}`}
     >
       {/* Header */}
       <div className="flex items-start justify-between mb-4">
         <div>
-          <h3 className="text-xl font-bold mb-2">{project.title}</h3>
-          <p className="text-sm text-foreground/60">{project.date}</p>
+          <h3 className="text-xl font-bold mb-2">{projectData.title}</h3>
+          <p className="text-sm text-foreground/60">{projectData.date}</p>
         </div>
-        {project.featured && (
+        {isProject(project) && project.featured && (
           <span className="px-3 py-1 bg-accent/20 text-accent text-xs rounded-full">
             Featured
           </span>
@@ -45,10 +53,10 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
       </div>
 
       {/* Description */}
-      <p className="text-foreground/80 mb-4">{project.description}</p>
+      <p className="text-foreground/80 mb-4">{projectData.description}</p>
 
-      {/* Metrics */}
-      {project.metrics && project.metrics.length > 0 && (
+      {/* Metrics - only for Project type */}
+      {isProject(project) && project.metrics && project.metrics.length > 0 && (
         <div className="flex flex-wrap gap-4 mb-4">
           {project.metrics.map((metric, idx) => (
             <div key={idx} className="text-sm">
@@ -61,7 +69,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
 
       {/* Tech Stack */}
       <div className="flex flex-wrap gap-2 mb-4">
-        {project.tech.slice(0, 5).map((tech, idx) => (
+        {projectData.tech.slice(0, 5).map((tech, idx) => (
           <span
             key={idx}
             className="px-2 py-1 bg-white/5 rounded text-xs text-foreground/80 border border-white/10"
@@ -69,28 +77,37 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
             {tech}
           </span>
         ))}
-        {project.tech.length > 5 && (
+        {projectData.tech.length > 5 && (
           <span className="px-2 py-1 text-xs text-foreground/60">
-            +{project.tech.length - 5} more
+            +{projectData.tech.length - 5} more
           </span>
         )}
       </div>
 
-    {/* Highlights */}
-      <div className="space-y-2 mb-4">
-        {(project.highlights || []).slice(0, 2).map((highlight, idx) => (
-          <p key={idx} className="text-sm text-foreground/70 flex items-start gap-2">
-            <span className="text-accent mt-1">•</span>
-            <span>{highlight}</span>
-          </p>
-        ))}
-      </div>
+      {/* Highlights - only for Project type */}
+      {isProject(project) && project.highlights && project.highlights.length > 0 && (
+        <div className="space-y-2 mb-4">
+          {project.highlights.slice(0, 2).map((highlight, idx) => (
+            <p key={idx} className="text-sm text-foreground/70 flex items-start gap-2">
+              <span className="text-accent mt-1">•</span>
+              <span>{highlight}</span>
+            </p>
+          ))}
+        </div>
+      )}
 
-      {/* View Details */}
-      <button className="text-primary hover:text-accent transition-colors text-sm font-medium flex items-center gap-2">
-        View Details
-        <ExternalLink size={14} />
-      </button>
+      {/* View Details / External Link */}
+      {showLink && 'url' in project && project.url ? (
+        <a
+          href={project.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-primary hover:text-accent transition-colors text-sm font-medium flex items-center gap-2"
+        >
+          View on GitHub
+          <ExternalLink size={14} />
+        </a>
+      ) : null}
     </motion.div>
   );
 }

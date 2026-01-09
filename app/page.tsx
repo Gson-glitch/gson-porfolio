@@ -1,12 +1,13 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import HeroOverlay from './components/dom/HeroOverlay';
 import ProjectCard from './components/dom/ProjectCard';
 import CertificateModal from './components/dom/CertificateModal';
 import { projects, type Project } from './data/projects';
+import { accomplishments } from './data/accomplishments';
 import { experiences, education } from './data/experience';
 import { skillCategories, contactInfo } from './data/skills';
 import { motion } from 'framer-motion';
@@ -21,27 +22,47 @@ import {
   Award,
   Calendar,
   Eye,
+  ChevronDown,
+  ChevronUp,
 } from 'lucide-react';
 
-// Import generated certificate data
-// Run `npm run dev` to generate this file if missing
 import generatedCertificates from './data/certificates.json';
 
 const Scene = dynamic(() => import('./components/canvas/Scene'), {
   ssr: false,
   loading: () => (
-    <div className="absolute inset-0 -z-10 bg-gradient-to-b from-background to-primary/10" />
+    <div className="fixed inset-0 -z-10 bg-gradient-to-b from-background to-primary/10" />
   ),
 });
 
 export default function Home() {
   const [pinnedRepos, setPinnedRepos] = useState<Project[]>([]);
   const [loadingRepos, setLoadingRepos] = useState(true);
-  
-  // State for the PDF Modal
   const [selectedCert, setSelectedCert] = useState<any | null>(null);
+  
+  // Show More states
+  const [showAllAccomplishments, setShowAllAccomplishments] = useState(false);
+  const [showAllFeatured, setShowAllFeatured] = useState(false);
 
-  // 1. Fetch Pinned Repos (GitHub) - Preserved from your version
+  // Responsive card limits
+  const getCardLimits = () => {
+    if (typeof window === 'undefined') return { large: 6, tablet: 4 };
+    const width = window.innerWidth;
+    if (width >= 1024) return { large: 6, tablet: 6 }; // lg screens
+    if (width >= 768) return { large: 4, tablet: 4 }; // md screens
+    return { large: 4, tablet: 4 }; // mobile
+  };
+
+  const [cardLimits, setCardLimits] = useState({ large: 6, tablet: 4 });
+
+  useEffect(() => {
+    const updateLimits = () => setCardLimits(getCardLimits());
+    updateLimits();
+    window.addEventListener('resize', updateLimits);
+    return () => window.removeEventListener('resize', updateLimits);
+  }, []);
+
+  // Fetch Pinned Repos
   useEffect(() => {
     const fetchRepos = async () => {
       try {
@@ -59,6 +80,15 @@ export default function Home() {
 
     fetchRepos();
   }, []);
+
+  // Display logic
+  const displayedAccomplishments = showAllAccomplishments
+    ? accomplishments
+    : accomplishments.slice(0, cardLimits.large);
+
+  const displayedFeatured = showAllFeatured
+    ? pinnedRepos
+    : pinnedRepos.slice(0, cardLimits.large);
 
   return (
     <>
@@ -190,30 +220,51 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Projects Section - Preserved Layout */}
+      {/* Projects Section */}
       <section id="projects" className="py-20 px-6">
         <div className="container mx-auto max-w-7xl">
           
+          {/* Accomplishments */}
           <h2 className="text-4xl font-bold mb-12 text-center text-gradient">
             Accomplishments
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 mb-16">
-            {projects.map((project, index) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 mb-8">
+            {displayedAccomplishments.map((accomplishment, index) => (
               <ProjectCard 
-                key={project.id} 
-                project={project} 
+                key={accomplishment.id} 
+                project={accomplishment} 
                 index={index} 
                 showLink={false}
               />
             ))}
           </div>
 
+          {accomplishments.length > cardLimits.large && (
+            <div className="flex justify-center mb-16">
+              <button
+                onClick={() => setShowAllAccomplishments(!showAllAccomplishments)}
+                className="flex items-center gap-2 px-6 py-3 glass rounded-lg hover:bg-white/10 transition-all font-medium"
+              >
+                {showAllAccomplishments ? (
+                  <>
+                    Show Less <ChevronUp size={20} />
+                  </>
+                ) : (
+                  <>
+                    Show More <ChevronDown size={20} />
+                  </>
+                )}
+              </button>
+            </div>
+          )}
+
+          {/* Featured Projects */}
           <h3 className="text-3xl font-bold mb-8 text-center">Featured Projects</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {loadingRepos ? (
               <p className="text-center w-full col-span-3 text-foreground/60">Loading GitHub projects...</p>
             ) : pinnedRepos.length > 0 ? (
-              pinnedRepos.map((project, index) => (
+              displayedFeatured.map((project, index) => (
                 <ProjectCard 
                   key={project.id} 
                   project={project} 
@@ -225,6 +276,25 @@ export default function Home() {
               <p className="text-center w-full col-span-3 text-foreground/60">No pinned repositories found.</p>
             )}
           </div>
+
+          {pinnedRepos.length > cardLimits.large && (
+            <div className="flex justify-center mt-8">
+              <button
+                onClick={() => setShowAllFeatured(!showAllFeatured)}
+                className="flex items-center gap-2 px-6 py-3 glass rounded-lg hover:bg-white/10 transition-all font-medium"
+              >
+                {showAllFeatured ? (
+                  <>
+                    Show Less <ChevronUp size={20} />
+                  </>
+                ) : (
+                  <>
+                    Show More <ChevronDown size={20} />
+                  </>
+                )}
+              </button>
+            </div>
+          )}
         </div>
       </section>
 
@@ -266,7 +336,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Certifications Section (MERGED PREVIEW FEATURE) */}
+      {/* Certifications Section */}
       <section id="certifications" className="py-20 px-6">
         <div className="container mx-auto max-w-6xl">
           <h2 className="text-4xl font-bold mb-12 text-center text-gradient">
@@ -284,7 +354,6 @@ export default function Home() {
                   onClick={() => setSelectedCert(cert)}
                   className="glass rounded-xl overflow-hidden cursor-pointer group hover:bg-white/10 transition-all flex flex-col"
                 >
-                  {/* Image Preview Area */}
                   <div className="relative w-full h-48 bg-black/20 overflow-hidden">
                     <Image 
                       src={cert.thumbnail} 
@@ -292,7 +361,6 @@ export default function Home() {
                       fill
                       className="object-cover group-hover:scale-105 transition-transform duration-500"
                     />
-                    {/* Overlay Icon */}
                     <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                       <div className="bg-white/10 backdrop-blur-md p-3 rounded-full">
                          <Eye className="text-white" size={24} />
@@ -300,7 +368,6 @@ export default function Home() {
                     </div>
                   </div>
 
-                  {/* Text Content */}
                   <div className="p-6">
                     <div className="flex items-start gap-3">
                       <div className="p-2 bg-accent/20 rounded-lg shrink-0">
@@ -325,7 +392,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Certificate Modal Instance */}
       <CertificateModal 
         isOpen={!!selectedCert}
         onClose={() => setSelectedCert(null)}

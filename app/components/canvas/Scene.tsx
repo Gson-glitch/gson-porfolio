@@ -1,15 +1,28 @@
 'use client';
 
 import { Canvas } from '@react-three/fiber';
-import { OrbitControls, PerspectiveCamera, Float } from '@react-three/drei';
-import { Suspense } from 'react';
+import { OrbitControls, PerspectiveCamera } from '@react-three/drei';
+import { Suspense, useMemo } from 'react';
 import Model from './Model';
 import Effects from './Effects';
+import FloatingBubbles from './FloatingBubbles';
 
 export default function Scene() {
+  // Generate random bubble positions once on mount
+  const bubblePositions = useMemo(() => {
+    return Array.from({ length: 4 }, () => ({
+      x: (Math.random() - 0.5) * 8,
+      y: (Math.random() - 0.5) * 6,
+      z: (Math.random() - 0.5) * 4,
+      color: ['#10b981', '#f59e0b', '#ef4444', '#8b5cf6'][Math.floor(Math.random() * 4)],
+      scale: 0.2 + Math.random() * 0.2,
+      speed: 0.3 + Math.random() * 0.4,
+    }));
+  }, []);
+
   return (
     <Canvas
-      className="absolute inset-0 -z-10"
+      className="fixed inset-0 -z-10"
       gl={{ antialias: true, alpha: true }}
     >
       <PerspectiveCamera makeDefault position={[0, 0, 5]} fov={75} />
@@ -21,10 +34,11 @@ export default function Scene() {
       
       {/* 3D Model */}
       <Suspense fallback={null}>
-        <Float speed={1.5} rotationIntensity={0.5} floatIntensity={0.5}>
-          <Model />
-        </Float>
+        <Model />
       </Suspense>
+      
+      {/* Floating Bubbles with random positions */}
+      <FloatingBubbles positions={bubblePositions} />
       
       {/* Effects */}
       <Effects />
