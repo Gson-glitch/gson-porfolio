@@ -1,0 +1,51 @@
+[
+  {
+    "id": "Advanced_Learning_Algorithms__Coursera",
+    "name": "Advanced Learning Algorithms",
+    "issuer": "Coursera",
+    "pdf": "/certificates/Advanced_Learning_Algorithms__Coursera.pdf",
+    "thumbnail": "/thumbnails/Advanced_Learning_Algorithms__Coursera.png"
+  },
+  {
+    "id": "Introduction_to_Data_Science_in_Python__Coursera",
+    "name": "Introduction to Data Science in Python",
+    "issuer": "Coursera",
+    "pdf": "/certificates/Introduction_to_Data_Science_in_Python__Coursera.pdf",
+    "thumbnail": "/thumbnails/Introduction_to_Data_Science_in_Python__Coursera.png"
+  },
+  {
+    "id": "Machine_Learning_Specialization__Coursera",
+    "name": "Machine Learning Specialization",
+    "issuer": "Coursera",
+    "pdf": "/certificates/Machine_Learning_Specialization__Coursera.pdf",
+    "thumbnail": "/thumbnails/Machine_Learning_Specialization__Coursera.png"
+  },
+  {
+    "id": "React-18_for_Beginners__Code_with_Mosh",
+    "name": "React-18 for Beginners",
+    "issuer": "Code with Mosh",
+    "pdf": "/certificates/React-18_for_Beginners__Code_with_Mosh.pdf",
+    "thumbnail": "/thumbnails/React-18_for_Beginners__Code_with_Mosh.png"
+  },
+  {
+    "id": "Supervised_Machine_Learning_Regression_and_Classification__Coursera",
+    "name": "Supervised Machine Learning Regression and Classification",
+    "issuer": "Coursera",
+    "pdf": "/certificates/Supervised_Machine_Learning_Regression_and_Classification__Coursera.pdf",
+    "thumbnail": "/thumbnails/Supervised_Machine_Learning_Regression_and_Classification__Coursera.png"
+  },
+  {
+    "id": "Unsupervised_Learning_Recommenders__Coursera",
+    "name": "Unsupervised Learning Recommenders",
+    "issuer": "Coursera",
+    "pdf": "/certificates/Unsupervised_Learning_Recommenders__Coursera.pdf",
+    "thumbnail": "/thumbnails/Unsupervised_Learning_Recommenders__Coursera.png"
+  },
+  {
+    "id": "Version_Control__Coursera",
+    "name": "Version Control",
+    "issuer": "Coursera",
+    "pdf": "/certificates/Version_Control__Coursera.pdf",
+    "thumbnail": "/thumbnails/Version_Control__Coursera.png"
+  }
+]

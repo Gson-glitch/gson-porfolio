@@ -1,7 +1,7 @@
 {
-  "name": "gloryson-portfolio-v1",
+  "name": "gson-portfolio",
   "version": "1.0.0",
-  "description": "Interactive ML Engineer Portfolio - Showcasing 3+ years of experience in Computer Vision, NLP, and Reinforcement Learning",
+  "description": "Gloryson Ondanje Portfolio",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -19,6 +19,7 @@
     "gsap": "^3.12.5",
     "lucide-react": "^0.379.0",
     "next": "^14.2.0",
+    "octokit": "^5.0.5",
     "postprocessing": "^6.38.2",
     "react": "^18.3.0",
     "react-dom": "^18.3.0",

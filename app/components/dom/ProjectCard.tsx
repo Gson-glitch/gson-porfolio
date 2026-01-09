@@ -76,9 +76,9 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
         )}
       </div>
 
-      {/* Highlights */}
+    {/* Highlights */}
       <div className="space-y-2 mb-4">
-        {project.highlights.slice(0, 2).map((highlight, idx) => (
+        {(project.highlights || []).slice(0, 2).map((highlight, idx) => (
           <p key={idx} className="text-sm text-foreground/70 flex items-start gap-2">
             <span className="text-accent mt-1">•</span>
             <span>{highlight}</span>
