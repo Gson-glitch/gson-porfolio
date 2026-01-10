@@ -94,6 +94,7 @@ export const experiences: Experience[] = [
 export interface Education {
   degree: string;
   institution: string;
+  url?: string;
   location: string;
   period: string;
   description?: string;
@@ -102,6 +103,7 @@ export interface Education {
 export const education: Education = {
   degree: 'BSc. Computer Science',
   institution: 'University of Embu',
+  url: 'https://embuni.ac.ke/',
   location: 'Embu, Kenya',
   period: '09/2019 – 09/2023',
   description: 'Focused on Machine Learning, Computer Vision, and Software Engineering'

@@ -34,20 +34,22 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'glass py-4' : 'bg-transparent py-6'
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 pl-safe pr-safe ${
+        isScrolled 
+        ? 'glass py-4 landscape:py-2 lg:landscape:py-4' 
+        : 'bg-transparent py-6 landscape:py-2 lg:landscape:py-6'
       }`}
     >
       <div className="container mx-auto px-6 flex items-center justify-between">
         {/* Logo */}
         <Link
           href="/"
-          className="text-2xl font-bold text-gradient hover:opacity-80 transition-opacity"
+          className="text-2xl font-bold text-gradient hover:opacity-80 transition-opacity landscape:text-xl lg:landscape:text-2xl"
         >
           GO
         </Link>
 
-        {/* Desktop Navigation - Hidden on mobile/tablet, visible on lg (iPad Pro landscape/Desktop) */}
+        {/* Desktop Navigation */}
         <div className="hidden lg:flex items-center gap-8">
           {navLinks.map((link) => (
             <Link
@@ -69,7 +71,7 @@ export default function Navbar() {
           ))}
         </div>
 
-        {/* Social Links & Resume - Hidden on mobile/tablet, visible on lg */}
+        {/* Social Links & Resume - Desktop */}
         <div className="hidden lg:flex items-center gap-4">
           <a
             href={contactInfo.github}
@@ -106,7 +108,7 @@ export default function Navbar() {
           </a>
         </div>
 
-        {/* Mobile Menu Button - Visible on screens below lg (iPad Pro) */}
+        {/* Mobile Menu Button */}
         <button
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           className="lg:hidden text-foreground"
@@ -116,16 +118,16 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Mobile Menu - Compact version, show below lg */}
+      {/* Mobile Menu - Optimized for Landscape Phones */}
       {isMobileMenuOpen && (
-        <div className="lg:hidden glass mt-4 mx-6 rounded-lg p-6 animate-fade-in max-h-[70vh] overflow-y-auto">
-          <div className="flex flex-col gap-4">
+        <div className="lg:hidden glass mt-4 mx-6 rounded-lg p-6 animate-fade-in max-h-[70vh] landscape:max-h-[80vh] overflow-y-auto landscape:mt-1 landscape:p-3 landscape:mx-4">
+          <div className="flex flex-col gap-4 landscape:gap-1.5">
             {navLinks.map((link) => (
               <Link
                 key={link.name}
                 href={link.href}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className={`transition-colors py-2 ${
+                className={`transition-colors py-2 landscape:py-1 ${
                   isActive(link.href)
                     ? 'text-foreground font-medium'
                     : 'text-foreground/80 hover:text-foreground'
@@ -134,7 +136,7 @@ export default function Navbar() {
                 {link.name}
               </Link>
             ))}
-            <div className="flex items-center gap-4 pt-4 border-t border-white/10">
+            <div className="flex items-center gap-4 pt-4 border-t border-white/10 landscape:pt-2">
               <a
                 href={contactInfo.github}
                 target="_blank"
@@ -162,7 +164,7 @@ export default function Navbar() {
             <a
               href="/resume/Gloryson_Ondanje_Resume.pdf"
               download
-              className="flex items-center justify-center gap-2 px-4 py-2 bg-gradient-to-r from-primary to-accent rounded-lg hover:opacity-90 transition-opacity"
+              className="flex items-center justify-center gap-2 px-4 py-2 bg-gradient-to-r from-primary to-accent rounded-lg hover:opacity-90 transition-opacity landscape:py-1.5 landscape:mt-1"
             >
               <FileDown size={18} />
               <span className="font-medium">Download Resume</span>

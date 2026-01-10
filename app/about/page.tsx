@@ -6,8 +6,8 @@ import RobotAnimation from '@/components/dom/RobotAnimation';
 
 export default function AboutPage() {
   return (
-    <>
-      <section className="h-screen overflow-hidden py-16 md:py-20 px-4 md:px-6 flex items-center">
+    <section className="min-h-screen flex flex-col">
+      <div className="flex-grow py-24 md:py-32 px-4 md:px-6 flex items-center justify-center">
         <div className="container mx-auto max-w-6xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
             {/* Lottie Animation - Left side (hidden on mobile) */}
@@ -50,10 +50,9 @@ export default function AboutPage() {
             </motion.div>
           </div>
         </div>
-      </section>
-      <div className="absolute bottom-0 left-0 right-0">
-        <Footer />
       </div>
-    </>
+      
+      <Footer />
+    </section>
   );
 }

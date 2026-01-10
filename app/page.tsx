@@ -13,9 +13,8 @@ const Scene = dynamic(() => import('./components/canvas/Scene'), {
 
 export default function Home() {
   return (
-    <section className="relative h-screen overflow-hidden grain">
-      {/* 3D Scene - Only in top third, hidden on mobile */}
-      <div className="hidden md:block absolute top-0 left-0 right-0 h-1/3 -z-10">
+    <section className="relative h-screen overflow-hidden grain w-full">
+      <div className="hidden md:block landscape:hidden lg:landscape:block absolute top-0 left-0 right-0 h-1/3 -z-10">
         <Scene />
       </div>
       

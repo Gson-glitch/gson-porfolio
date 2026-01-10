@@ -14,7 +14,7 @@ export default function CertificateModal({ isOpen, onClose, fileUrl, title }: Ce
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6">
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 landscape:p-2 lg:landscape:p-6 pl-safe pr-safe">
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -26,10 +26,10 @@ export default function CertificateModal({ isOpen, onClose, fileUrl, title }: Ce
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            className="relative w-full max-w-5xl h-[85vh] bg-[#1a1a1a] border border-white/10 rounded-2xl shadow-2xl flex flex-col overflow-hidden"
+            className="relative w-full max-w-5xl h-[85vh] landscape:h-full lg:landscape:h-[85vh] bg-[#1a1a1a] border border-white/10 rounded-2xl shadow-2xl flex flex-col overflow-hidden"
           >
-            <div className="flex items-center justify-between px-6 py-4 border-b border-white/10 bg-white/5">
-              <h3 className="text-lg font-bold text-white truncate max-w-[70%]">
+            <div className="flex items-center justify-between px-6 py-4 border-b border-white/10 bg-white/5 landscape:py-2 landscape:px-4 lg:landscape:py-4 lg:landscape:px-6">
+              <h3 className="text-lg font-bold text-white truncate max-w-[70%] landscape:text-base lg:landscape:text-lg">
                 {title}
               </h3>
               <div className="flex items-center gap-2">
@@ -37,20 +37,20 @@ export default function CertificateModal({ isOpen, onClose, fileUrl, title }: Ce
                   href={fileUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2 hover:bg-white/10 rounded-lg transition-colors text-foreground/60 hover:text-primary"
+                  className="p-2 hover:bg-white/10 rounded-lg transition-colors text-foreground/60 hover:text-primary landscape:p-1 lg:landscape:p-2"
                   title="Open in new tab"
                 >
                   <ExternalLink size={20} />
                 </a>
                 <button
                   onClick={onClose}
-                  className="p-2 hover:bg-red-500/20 rounded-lg transition-colors text-foreground/60 hover:text-red-400"
+                  className="p-2 hover:bg-red-500/20 rounded-lg transition-colors text-foreground/60 hover:text-red-400 landscape:p-1 lg:landscape:p-2"
                 >
                   <X size={20} />
                 </button>
               </div>
             </div>
-            <div className="flex-1 bg-white/5 relative">
+            <div className="flex-1 bg-white/5 relative overflow-hidden">
               <object
                 data={`${fileUrl}#toolbar=0&navpanes=0&scrollbar=0`}
                 type="application/pdf"
