@@ -5,8 +5,15 @@ import { motion } from 'framer-motion';
 
 export default function MouseFollower() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [isDesktop, setIsDesktop] = useState(false);
 
   useEffect(() => {
+    // Check if device has mouse (not touch-only)
+    const hasPointer = window.matchMedia('(pointer: fine)').matches;
+    setIsDesktop(hasPointer);
+
+    if (!hasPointer) return;
+
     const handleMouseMove = (e: MouseEvent) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
     };
@@ -14,6 +21,9 @@ export default function MouseFollower() {
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
+
+  // Don't render on touch devices
+  if (!isDesktop) return null;
 
   return (
     <motion.div
