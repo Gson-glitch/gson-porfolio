@@ -1,14 +1,10 @@
 'use client';
 
+import Link from 'next/link';
 import { ArrowDown } from 'lucide-react';
 import { contactInfo } from '@/data/skills';
 
 export default function HeroOverlay() {
-  const scrollToNext = () => {
-    const aboutSection = document.getElementById('about');
-    aboutSection?.scrollIntoView({ behavior: 'smooth' });
-  };
-
   return (
     <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-6 text-center">
       <div className="animate-slide-up">
@@ -34,19 +30,19 @@ export default function HeroOverlay() {
             <p className="text-sm text-foreground/60">Projects Deployed</p>
           </div>
           <div className="glass px-6 py-3 rounded-lg">
-            <p className="text-2xl font-bold text-gradient">92%</p>
-            <p className="text-sm text-foreground/60">Model Accuracy</p>
+            <p className="text-2xl font-bold text-gradient">&lt;1s</p>
+            <p className="text-sm text-foreground/60">Response Time</p>
           </div>
         </div>
 
         {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <a
-            href="#projects"
+          <Link
+            href="/projects"
             className="px-8 py-3 bg-gradient-to-r from-primary to-accent rounded-lg font-medium hover:opacity-90 transition-opacity"
           >
             View Projects
-          </a>
+          </Link>
           <a
             href={`mailto:${contactInfo.email}`}
             className="px-8 py-3 glass rounded-lg font-medium hover:bg-white/10 transition-colors"
@@ -57,13 +53,13 @@ export default function HeroOverlay() {
       </div>
 
       {/* Scroll Indicator */}
-      <button
-        onClick={scrollToNext}
+      <Link
+        href="/about"
         className="absolute bottom-8 animate-bounce cursor-pointer hover:text-primary transition-colors"
         aria-label="Scroll down"
       >
         <ArrowDown size={32} />
-      </button>
+      </Link>
     </div>
   );
 }

@@ -144,6 +144,6 @@ export const contactInfo: ContactInfo = {
   email: 'glorysonhorace@gmail.com',
   phone: '+254796411809',
   location: 'Nairobi, Kenya',
-  linkedin: 'https://linkedin.com/in/gloryson-ondanje-466893242',
+  linkedin: 'https://linkedin.com/in/gloryson-ondanje',
   github: 'https://github.com/Gson-glitch'
 };

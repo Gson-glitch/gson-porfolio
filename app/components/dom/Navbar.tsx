@@ -1,12 +1,15 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
+import Link from 'next/link';
 import { Menu, X, Github, Linkedin, Mail, FileDown } from 'lucide-react';
 import { contactInfo } from '@/data/skills';
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -18,13 +21,16 @@ export default function Navbar() {
   }, []);
 
   const navLinks = [
-    { name: 'About', href: '#about' },
-    { name: 'Experience', href: '#experience' },
-    { name: 'Projects', href: '#projects' },
-    { name: 'Skills', href: '#skills' },
-    { name: 'Certifications', href: '#certifications' },
-    { name: 'Contact', href: '#contact' },
+    { name: 'Home', href: '/' },
+    { name: 'About', href: '/about' },
+    { name: 'Experience', href: '/experience' },
+    { name: 'Skills', href: '/skills' },
+    { name: 'Projects', href: '/projects' },
+    { name: 'Services', href: '/services' },
+    { name: 'Contact', href: '/contact' },
   ];
+
+  const isActive = (href: string) => pathname === href;
 
   return (
     <nav
@@ -34,24 +40,32 @@ export default function Navbar() {
     >
       <div className="container mx-auto px-6 flex items-center justify-between">
         {/* Logo */}
-        <a
-          href="#"
+        <Link
+          href="/"
           className="text-2xl font-bold text-gradient hover:opacity-80 transition-opacity"
         >
           GO
-        </a>
+        </Link>
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
-            <a
+            <Link
               key={link.name}
               href={link.href}
-              className="text-foreground/80 hover:text-foreground transition-colors relative group"
+              className={`transition-colors relative group ${
+                isActive(link.href)
+                  ? 'text-foreground'
+                  : 'text-foreground/80 hover:text-foreground'
+              }`}
             >
               {link.name}
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-accent group-hover:w-full transition-all duration-300" />
-            </a>
+              <span
+                className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-primary to-accent transition-all duration-300 ${
+                  isActive(link.href) ? 'w-full' : 'w-0 group-hover:w-full'
+                }`}
+              />
+            </Link>
           ))}
         </div>
 
@@ -107,14 +121,18 @@ export default function Navbar() {
         <div className="md:hidden glass mt-4 mx-6 rounded-lg p-6 animate-fade-in">
           <div className="flex flex-col gap-4">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.name}
                 href={link.href}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="text-foreground/80 hover:text-foreground transition-colors py-2"
+                className={`transition-colors py-2 ${
+                  isActive(link.href)
+                    ? 'text-foreground font-medium'
+                    : 'text-foreground/80 hover:text-foreground'
+                }`}
               >
                 {link.name}
-              </a>
+              </Link>
             ))}
             <div className="flex items-center gap-4 pt-4 border-t border-white/10">
               <a
