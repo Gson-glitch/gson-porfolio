@@ -27,11 +27,11 @@ export default function SkillsPage() {
 
   return (
     <>
-      <div className="py-32 px-6 min-h-screen">
+      <div className="py-24 md:py-32 px-4 md:px-6 min-h-screen">
         <div className="container mx-auto max-w-6xl">
           {/* Technical Skills */}
-          <section className="mb-20">
-            <h2 className="text-4xl font-bold mb-12 text-center text-gradient">
+          <section className="mb-16 md:mb-20">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-8 md:mb-12 text-center text-gradient">
               Technical Skills
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
@@ -41,19 +41,19 @@ export default function SkillsPage() {
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="glass rounded-xl p-6"
+                  className="glass rounded-xl p-5 md:p-6"
                 >
                   <div
-                    className={`w-12 h-12 rounded-lg bg-gradient-to-br ${category.color} mb-4 flex items-center justify-center`}
+                    className={`w-10 h-10 md:w-12 md:h-12 rounded-lg bg-gradient-to-br ${category.color} mb-4 flex items-center justify-center`}
                   >
-                    <span className="text-2xl">💻</span>
+                    <span className="text-xl md:text-2xl">💻</span>
                   </div>
-                  <h3 className="text-xl font-bold mb-4">{category.name}</h3>
+                  <h3 className="text-lg md:text-xl font-bold mb-4">{category.name}</h3>
                   <div className="flex flex-wrap gap-2">
                     {category.skills.map((skill, idx) => (
                       <span
                         key={idx}
-                        className="px-3 py-1 bg-white/5 rounded-full text-sm text-foreground/80 border border-white/10"
+                        className="px-2 py-1 md:px-3 bg-white/5 rounded-full text-xs md:text-sm text-foreground/80 border border-white/10"
                       >
                         {skill}
                       </span>
@@ -73,7 +73,7 @@ export default function SkillsPage() {
 
           {/* Certifications */}
           <section>
-            <h2 className="text-4xl font-bold mb-12 text-center text-gradient">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-8 md:mb-12 text-center text-gradient">
               Certifications
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
@@ -87,7 +87,7 @@ export default function SkillsPage() {
                     onClick={() => setSelectedCert(cert)}
                     className="glass rounded-xl overflow-hidden cursor-pointer group hover:bg-white/10 transition-all flex flex-col"
                   >
-                    <div className="relative w-full h-48 bg-black/20 overflow-hidden">
+                    <div className="relative w-full h-40 md:h-48 bg-black/20 overflow-hidden">
                       <Image
                         src={cert.thumbnail}
                         alt={cert.name}
@@ -95,29 +95,29 @@ export default function SkillsPage() {
                         className="object-cover group-hover:scale-105 transition-transform duration-500"
                       />
                       <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                        <div className="bg-white/10 backdrop-blur-md p-3 rounded-full">
-                          <Eye className="text-white" size={24} />
+                        <div className="bg-white/10 backdrop-blur-md p-2 md:p-3 rounded-full">
+                          <Eye className="text-white w-5 h-5 md:w-6 md:h-6" />
                         </div>
                       </div>
                     </div>
 
-                    <div className="p-6">
+                    <div className="p-5 md:p-6">
                       <div className="flex items-start gap-3">
                         <div className="p-2 bg-accent/20 rounded-lg shrink-0">
-                          <Award className="text-accent" size={20} />
+                          <Award className="text-accent w-4 h-4 md:w-5 md:h-5" />
                         </div>
                         <div>
-                          <h3 className="font-bold text-lg mb-1 leading-snug">
+                          <h3 className="font-bold text-base md:text-lg mb-1 leading-snug">
                             {cert.name}
                           </h3>
-                          <p className="text-sm text-foreground/60">{cert.issuer}</p>
+                          <p className="text-xs md:text-sm text-foreground/60">{cert.issuer}</p>
                         </div>
                       </div>
                     </div>
                   </motion.div>
                 ))
               ) : (
-                <p className="text-center w-full col-span-3 text-foreground/60">
+                <p className="text-center w-full col-span-1 md:col-span-2 lg:col-span-3 text-sm md:text-base text-foreground/60">
                   No certificates found. Add .pdf files to public/certificates
                 </p>
               )}

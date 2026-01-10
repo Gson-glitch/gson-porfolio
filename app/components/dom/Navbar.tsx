@@ -47,8 +47,8 @@ export default function Navbar() {
           GO
         </Link>
 
-        {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center gap-8">
+        {/* Desktop Navigation - Hidden on mobile/tablet, visible on lg (iPad Pro landscape/Desktop) */}
+        <div className="hidden lg:flex items-center gap-8">
           {navLinks.map((link) => (
             <Link
               key={link.name}
@@ -69,8 +69,8 @@ export default function Navbar() {
           ))}
         </div>
 
-        {/* Social Links & Resume */}
-        <div className="hidden md:flex items-center gap-4">
+        {/* Social Links & Resume - Hidden on mobile/tablet, visible on lg */}
+        <div className="hidden lg:flex items-center gap-4">
           <a
             href={contactInfo.github}
             target="_blank"
@@ -106,19 +106,19 @@ export default function Navbar() {
           </a>
         </div>
 
-        {/* Mobile Menu Button */}
+        {/* Mobile Menu Button - Visible on screens below lg (iPad Pro) */}
         <button
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="md:hidden text-foreground"
+          className="lg:hidden text-foreground"
           aria-label="Toggle menu"
         >
           {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu - Compact version, show below lg */}
       {isMobileMenuOpen && (
-        <div className="md:hidden glass mt-4 mx-6 rounded-lg p-6 animate-fade-in">
+        <div className="lg:hidden glass mt-4 mx-6 rounded-lg p-6 animate-fade-in max-h-[70vh] overflow-y-auto">
           <div className="flex flex-col gap-4">
             {navLinks.map((link) => (
               <Link
@@ -158,6 +158,7 @@ export default function Navbar() {
                 <Mail size={20} />
               </a>
             </div>
+            
             <a
               href="/resume/Gloryson_Ondanje_Resume.pdf"
               download
