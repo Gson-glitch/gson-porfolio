@@ -1,6 +1,7 @@
 export interface Experience {
   id: string;
   company: string;
+  companyUrl?: string;
   position: string;
   location: string;
   period: string;
@@ -15,11 +16,12 @@ export const experiences: Experience[] = [
   {
     id: 'aai-labs',
     company: 'AAI Labs',
+    companyUrl: 'https://www.aai-labs.com/',
     position: 'Software Developer',
     location: 'Vilnius, Lithuania',
     period: '09/2023 – Present',
     type: 'remote',
-    description: 'Leading ML engineering initiatives across NLP, Computer Vision, and Reinforcement Learning domains.',
+    description: 'Building intelligent systems across NLP, Computer Vision, and Reinforcement Learning.',
     achievements: [
       'Developed custom LLM-based API for health analytics using WHO guidelines, RAG, and Vector Search achieving 92% answer relevancy and 88% faithfulness',
       'Designed RL-based self-tuning PID controller for drone altitude with 0.22% overshoot error and 0.03% steady-state error',
@@ -44,7 +46,8 @@ export const experiences: Experience[] = [
   {
     id: 'gebeya',
     company: 'Gebeya Inc.',
-    position: 'Junior Machine Learning Engineer (Freelance)',
+    companyUrl: 'https://gebeya.com/',
+    position: 'Machine Learning Engineer (Freelance)',
     location: 'Addis Ababa, Ethiopia',
     period: '05/2023 – 10/2024',
     type: 'remote',
@@ -68,6 +71,7 @@ export const experiences: Experience[] = [
   {
     id: 'millennium',
     company: 'Millenium Solutions EA Ltd.',
+    companyUrl: 'https://www.millenium.co.ke/',
     position: 'ERP Developer Internship',
     location: 'Nairobi, Kenya',
     period: '05/2023 – 08/2023',

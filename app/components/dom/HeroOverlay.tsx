@@ -1,12 +1,10 @@
 'use client';
 
 import Link from 'next/link';
-import { ArrowDown } from 'lucide-react';
-import { contactInfo } from '@/data/skills';
 
 export default function HeroOverlay() {
   return (
-    <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-6 text-center">
+    <div className="absolute inset-0 z-10 flex flex-col items-center justify-center px-6 text-center">
       <div className="animate-slide-up">
         <h1 className="text-5xl md:text-7xl font-bold mb-4">
           Gloryson <span className="text-gradient">Ondanje</span>
@@ -30,36 +28,35 @@ export default function HeroOverlay() {
             <p className="text-sm text-foreground/60">Projects Deployed</p>
           </div>
           <div className="glass px-6 py-3 rounded-lg">
-            <p className="text-2xl font-bold text-gradient">&lt;1s</p>
-            <p className="text-sm text-foreground/60">Response Time</p>
+            <p className="text-2xl font-bold text-gradient">40%</p>
+            <p className="text-sm text-foreground/60">Latency Reduced</p>
           </div>
         </div>
 
         {/* CTA Buttons */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
           <Link
             href="/projects"
             className="px-8 py-3 bg-gradient-to-r from-primary to-accent rounded-lg font-medium hover:opacity-90 transition-opacity"
           >
             View Projects
           </Link>
-          <a
-            href={`mailto:${contactInfo.email}`}
+          <Link
+            href="/contact"
             className="px-8 py-3 glass rounded-lg font-medium hover:bg-white/10 transition-colors"
           >
             Get In Touch
-          </a>
+          </Link>
         </div>
-      </div>
 
-      {/* Scroll Indicator */}
-      <Link
-        href="/about"
-        className="absolute bottom-8 animate-bounce cursor-pointer hover:text-primary transition-colors"
-        aria-label="Scroll down"
-      >
-        <ArrowDown size={32} />
-      </Link>
+        {/* Scroll Indicator */}
+        <Link
+          href="/about"
+          className="inline-block animate-bounce cursor-pointer hover:text-primary transition-colors"
+          aria-label="Scroll down"
+        >
+        </Link>
+      </div>
     </div>
   );
 }
