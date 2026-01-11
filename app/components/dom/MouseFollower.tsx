@@ -1,45 +1,42 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, useMotionValue, useSpring } from 'framer-motion';
 
 export default function MouseFollower() {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isDesktop, setIsDesktop] = useState(false);
+  
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  const springConfig = { damping: 25, stiffness: 150, mass: 0.5 };
+  const x = useSpring(mouseX, springConfig);
+  const y = useSpring(mouseY, springConfig);
 
   useEffect(() => {
-    // Check if device has mouse (not touch-only)
     const hasPointer = window.matchMedia('(pointer: fine)').matches;
     setIsDesktop(hasPointer);
-
     if (!hasPointer) return;
 
     const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
+      mouseX.set(e.clientX - 16); 
+      mouseY.set(e.clientY - 16);
     };
 
-    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
-  // Don't render on touch devices
   if (!isDesktop) return null;
 
   return (
     <motion.div
       className="fixed pointer-events-none z-50 w-8 h-8 rounded-full border-2 border-accent mix-blend-difference"
-      animate={{
-        x: mousePosition.x - 16,
-        y: mousePosition.y - 16,
-      }}
-      transition={{
-        type: 'spring',
-        damping: 30,
-        stiffness: 200,
-        mass: 0.5,
-      }}
       style={{
+        x,
+        y,
         background: 'radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, transparent 70%)',
+        willChange: 'transform',
       }}
     />
   );
