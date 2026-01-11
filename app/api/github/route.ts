@@ -1,6 +1,27 @@
 import { NextResponse } from 'next/server';
 import { Octokit } from 'octokit';
 
+interface GitHubRepoNode {
+  id: string;
+  name: string;
+  description: string;
+  url: string;
+  primaryLanguage: {
+    name: string;
+    color: string;
+  } | null;
+  stargazerCount: number;
+  forkCount: number;
+}
+
+interface GitHubGraphQLResponse {
+  viewer: {
+    pinnedItems: {
+      nodes: GitHubRepoNode[];
+    };
+  };
+}
+
 export async function GET() {
   const token = process.env.GITHUB_TOKEN;
 
@@ -34,12 +55,12 @@ export async function GET() {
   `;
 
   try {
-    const response: any = await octokit.graphql(query);
-    const pinnedRepos = response.viewer.pinnedItems.nodes.map((repo: any) => ({
+    const response = await octokit.graphql<GitHubGraphQLResponse>(query);
+    const pinnedRepos = response.viewer.pinnedItems.nodes.map((repo) => ({
       id: repo.id,
       title: repo.name,
       description: repo.description,
-      longDescription: repo.description, // Added missing required field
+      longDescription: repo.description,
       tech: [repo.primaryLanguage?.name || 'Code'],
       url: repo.url,
       stars: repo.stargazerCount,

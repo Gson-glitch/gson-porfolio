@@ -11,8 +11,16 @@ import { useCardLimits } from '@/hooks/useCardLimits';
 import generatedCertificates from '@/data/certificates.json';
 import Footer from '@/components/dom/Footer';
 
+interface GeneratedCert {
+  id: string;
+  name: string;
+  issuer: string;
+  pdf: string;
+  thumbnail: string;
+}
+
 export default function SkillsPage() {
-  const [selectedCert, setSelectedCert] = useState<any | null>(null);
+  const [selectedCert, setSelectedCert] = useState<GeneratedCert | null>(null);
   const [showAllSkills, setShowAllSkills] = useState(false);
   const [showAllCerts, setShowAllCerts] = useState(false);
   const cardLimits = useCardLimits();

@@ -8,24 +8,28 @@ export default function MouseFollower() {
   
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
-
   const springConfig = { damping: 25, stiffness: 150, mass: 0.5 };
   const x = useSpring(mouseX, springConfig);
   const y = useSpring(mouseY, springConfig);
 
   useEffect(() => {
-    const hasPointer = window.matchMedia('(pointer: fine)').matches;
-    setIsDesktop(hasPointer);
-    if (!hasPointer) return;
+    const canHover = window.matchMedia('(hover: hover)').matches;
+    const isFine = window.matchMedia('(pointer: fine)').matches;
+    const isSupported = canHover && isFine;
+
+    setIsDesktop(isSupported);
+
+    if (!isSupported) return;
 
     const handleMouseMove = (e: MouseEvent) => {
+      // Update values directly without triggering component re-render
       mouseX.set(e.clientX - 16); 
       mouseY.set(e.clientY - 16);
     };
 
     window.addEventListener('mousemove', handleMouseMove, { passive: true });
     return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
+  }, [mouseX, mouseY]);
 
   if (!isDesktop) return null;
 

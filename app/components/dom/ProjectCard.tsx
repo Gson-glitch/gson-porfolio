@@ -69,7 +69,7 @@ export default function ProjectCard({ project, index, showLink = false }: Projec
 
       {/* Tech Stack */}
       <div className="flex flex-wrap gap-2 mb-4">
-        {projectData.tech.slice(0, 5).map((tech, idx) => (
+        {projectData.tech.slice(0, 5).map((tech: string, idx: number) => (
           <span
             key={idx}
             className="px-2 py-1 bg-white/5 rounded text-xs text-foreground/80 border border-white/10"
