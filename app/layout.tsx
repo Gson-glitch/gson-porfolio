@@ -16,6 +16,8 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://portfolio.gson.io'),
+  
   title: 'Gloryson Ondanje | ML Engineer',
   description:
     'Machine Learning Engineer with 3+ years of experience in Computer Vision, NLP, and Reinforcement Learning. Building intelligent systems that solve real-world problems.',
@@ -35,7 +37,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://gloryson-ondanje.vercel.app',
+    url: 'https://portfolio.gson.io',
     title: 'Gloryson Ondanje | ML Engineer',
     description:
       'Machine Learning Engineer specializing in Computer Vision, NLP, and Reinforcement Learning',
