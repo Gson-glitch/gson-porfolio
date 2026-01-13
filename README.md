@@ -51,12 +51,23 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 To run this project locally, you will need to create a `.env.local` file in the root directory with the following variables:
 
 ```bash
+# Required for fetching pinned repositories in the Projects section
 GITHUB_TOKEN=your_github_personal_access_token
+
+# Required for Google Search Console verification (HTML Tag method)
+GOOGLE_SITE_VERIFICATION=your_google_verification_string
+
 ```
 
-*Required for fetching pinned repositories on the Projects page.*
+### How to get these values:
 
-Get your GitHub token at [github.com/settings/tokens](https://github.com/settings/tokens) with `public_repo` scope.
+**1. GITHUB_TOKEN**
+*Required for fetching pinned repositories on the Projects page.*
+Get your token at [github.com/settings/tokens](https://github.com/settings/tokens) with `public_repo` scope.
+
+**2. GOOGLE_SITE_VERIFICATION**
+*Required for SEO ownership verification.*
+Get this string from [Google Search Console](https://search.google.com/search-console) by adding a property via the **URL Prefix** method, then selecting **HTML Tag**. Copy only the random string inside the `content=""` attribute.
 
 ## 📁 Project Structure
 

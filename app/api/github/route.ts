@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { Octokit } from 'octokit';
+import { GITHUB_TOKEN } from '@/config';
 
 interface GitHubRepoNode {
   id: string;
@@ -23,7 +24,7 @@ interface GitHubGraphQLResponse {
 }
 
 export async function GET() {
-  const token = process.env.GITHUB_TOKEN;
+  const token = GITHUB_TOKEN;
 
   if (!token) {
     return NextResponse.json({ error: 'GitHub Token missing' }, { status: 500 });
