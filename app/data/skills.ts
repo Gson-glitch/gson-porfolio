@@ -1,80 +1,97 @@
 export interface SkillCategory {
   name: string;
-  skills: string[];
+  skills: Array<{ name: string; icon?: string }>;
   color: string;
 }
 
 export const skillCategories: SkillCategory[] = [
   {
     name: 'Languages & Frameworks',
-    skills: ['Python', 'Java', 'TypeScript', 'React.js', 'Next.js'],
+    skills: [
+      { name: 'Python', icon: 'python' },
+      { name: 'Java', icon: 'java' },
+      { name: 'TypeScript', icon: 'typescript' },
+      { name: 'Rust', icon: 'rust' },
+      { name: 'React.js', icon: 'react' },
+      { name: 'Next.js', icon: 'nextjs' }
+    ],
     color: 'from-blue-500 to-cyan-500'
   },
   {
     name: 'ML Libraries & Tools',
     skills: [
-      'PyTorch',
-      'TensorFlow',
-      'Scikit-Learn',
-      'Pandas',
-      'NumPy',
-      'OpenCV',
-      'NLTK',
-      'LlamaIndex',
-      'LangChain',
-      'Faiss',
-      'DeepEval'
+      { name: 'PyTorch', icon: 'pytorch' },
+      { name: 'TensorFlow', icon: 'tensorflow' },
+      { name: 'Scikit-Learn', icon: 'sklearn' },
+      { name: 'Pandas', icon: 'pandas' },
+      { name: 'NumPy', icon: 'numpy' },
+      { name: 'OpenCV', icon: 'opencv' },
+      { name: 'NLTK' },
+      { name: 'LlamaIndex' },
+      { name: 'LangChain' },
+      { name: 'Faiss' },
+      { name: 'DeepEval' }
     ],
     color: 'from-purple-500 to-pink-500'
   },
   {
     name: 'MLOps & DevOps',
     skills: [
-      'Docker',
-      'Kubernetes',
-      'Helm',
-      'ArgoCD',
-      'Terraform',
-      'CI/CD',
-      'Git'
+      { name: 'Docker', icon: 'docker' },
+      { name: 'Kubernetes', icon: 'kubernetes' },
+      { name: 'Helm' },
+      { name: 'ArgoCD' },
+      { name: 'Terraform', icon: 'terraform' },
+      { name: 'CI/CD' },
+      { name: 'Git', icon: 'git' }
     ],
     color: 'from-green-500 to-emerald-500'
   },
   {
     name: 'ML Domains',
     skills: [
-      'Supervised Learning',
-      'Unsupervised Learning',
-      'NLP',
-      'Computer Vision',
-      'Time-Series Analysis',
-      'Reinforcement Learning',
-      'Robotics (ROS2, PX4, Gazebo)',
-      'RAG'
+      { name: 'Supervised Learning' },
+      { name: 'Unsupervised Learning' },
+      { name: 'NLP' },
+      { name: 'Computer Vision' },
+      { name: 'Time-Series Analysis' },
+      { name: 'Reinforcement Learning' },
+      { name: 'Robotics (ROS2, PX4, Gazebo)', icon: 'robot' },
+      { name: 'RAG' }
     ],
     color: 'from-orange-500 to-red-500'
   },
   {
     name: 'Backend & API',
-    skills: ['FastAPI', 'Django', 'Flask', 'REST API', 'GraphQL'],
+    skills: [
+      { name: 'FastAPI', icon: 'fastapi' },
+      { name: 'Django', icon: 'django' },
+      { name: 'Flask', icon: 'flask' },
+      { name: 'REST API' },
+      { name: 'GraphQL', icon: 'graphql' }
+    ],
     color: 'from-indigo-500 to-purple-500'
   },
   {
     name: 'Data & Cloud',
     skills: [
-      'Databricks',
-      'PySpark',
-      'GCP',
-      'Azure',
-      'PostgreSQL',
-      'RabbitMQ',
-      'Redis'
+      { name: 'Databricks' },
+      { name: 'PySpark' },
+      { name: 'GCP', icon: 'gcp' },
+      { name: 'Azure', icon: 'azure' },
+      { name: 'PostgreSQL', icon: 'postgresql' },
+      { name: 'RabbitMQ', icon: 'rabbitmq' },
+      { name: 'Redis', icon: 'redis' }
     ],
     color: 'from-yellow-500 to-orange-500'
   },
   {
     name: 'Async & Parallelism',
-    skills: ['AsyncIO', 'Celery', 'Redis', 'Multiprocessing'],
+    skills: [
+      { name: 'AsyncIO' },
+      { name: 'Celery' },
+      { name: 'Multiprocessing' }
+    ],
     color: 'from-pink-500 to-rose-500'
   }
 ];

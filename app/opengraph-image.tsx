@@ -134,7 +134,7 @@ export default async function Image() {
               color: 'rgba(248, 250, 252, 0.4)',
             }}
           >
-            portfolio.gson.io
+            gson.io
           </div>
         </div>
       </div>

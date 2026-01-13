@@ -16,7 +16,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://portfolio.gson.io'),
+  metadataBase: new URL('https://gson.io'),
   
   title: 'Gloryson Ondanje | ML Engineer',
   description:

@@ -118,32 +118,34 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Mobile Menu - Optimized for Landscape Phones */}
+      {/* Mobile Menu - Optimized for all screen sizes */}
       {isMobileMenuOpen && (
-        <div className="lg:hidden glass mt-4 mx-6 rounded-lg p-6 animate-fade-in max-h-[70vh] landscape:max-h-[80vh] overflow-y-auto landscape:mt-1 landscape:p-3 landscape:mx-4">
-          <div className="flex flex-col gap-4 landscape:gap-1.5">
+        <div className="lg:hidden glass mt-3 mx-4 rounded-lg p-4 animate-fade-in max-h-[60vh] overflow-y-auto sm:mx-6 sm:p-5 landscape:max-h-[75vh] landscape:mt-2 landscape:p-3 landscape:mx-4">
+          <div className="flex flex-col gap-2.5 sm:gap-3 landscape:gap-1.5">
             {navLinks.map((link) => (
               <Link
                 key={link.name}
                 href={link.href}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className={`transition-colors py-2 landscape:py-1 ${
+                className={`transition-colors py-1.5 sm:py-2 landscape:py-1 relative ${
                   isActive(link.href)
                     ? 'text-foreground font-medium'
                     : 'text-foreground/80 hover:text-foreground'
                 }`}
               >
-                {link.name}
+                <span className={isActive(link.href) ? 'text-gradient' : ''}>
+                  {link.name}
+                </span>
               </Link>
             ))}
-            <div className="flex items-center gap-4 pt-4 border-t border-white/10 landscape:pt-2">
+            <div className="flex items-center gap-3 sm:gap-4 pt-3 sm:pt-4 border-t border-white/10 landscape:pt-2 landscape:gap-3">
               <a
                 href={contactInfo.github}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-foreground/80 hover:text-primary transition-colors"
               >
-                <Github size={20} />
+                <Github size={18} className="sm:w-5 sm:h-5" />
               </a>
               <a
                 href={contactInfo.linkedin}
@@ -151,22 +153,22 @@ export default function Navbar() {
                 rel="noopener noreferrer"
                 className="text-foreground/80 hover:text-primary transition-colors"
               >
-                <Linkedin size={20} />
+                <Linkedin size={18} className="sm:w-5 sm:h-5" />
               </a>
               <a
                 href={`mailto:${contactInfo.email}`}
                 className="text-foreground/80 hover:text-primary transition-colors"
               >
-                <Mail size={20} />
+                <Mail size={18} className="sm:w-5 sm:h-5" />
               </a>
             </div>
             
             <a
               href="/resume/Gloryson_Ondanje_Resume.pdf"
               download
-              className="flex items-center justify-center gap-2 px-4 py-2 bg-gradient-to-r from-primary to-accent rounded-lg hover:opacity-90 transition-opacity landscape:py-1.5 landscape:mt-1"
+              className="flex items-center justify-center gap-2 px-4 py-2 bg-gradient-to-r from-primary to-accent rounded-lg hover:opacity-90 transition-opacity text-sm sm:text-base landscape:py-1.5 landscape:mt-1 landscape:text-xs"
             >
-              <FileDown size={18} />
+              <FileDown size={16} className="sm:w-[18px] sm:h-[18px]" />
               <span className="font-medium">Download Resume</span>
             </a>
           </div>

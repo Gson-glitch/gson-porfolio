@@ -16,8 +16,9 @@ export default function ExperiencePage() {
 
   return (
     <>
-      <section className="min-h-screen w-full py-24 md:py-32 px-4 md:px-6 bg-white/5 pl-safe pr-safe landscape:py-20 lg:landscape:py-32">
-        <div className="container mx-auto max-w-6xl">
+      <section className="min-h-screen w-full py-24 md:py-32 pl-safe pr-safe landscape:py-20 lg:landscape:py-32">
+        <div className="container mx-auto max-w-6xl px-6">
+          
           {/* Work Experience */}
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-8 md:mb-12 text-center text-gradient landscape:text-2xl lg:landscape:text-5xl">
             Work Experience

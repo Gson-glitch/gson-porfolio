@@ -39,7 +39,7 @@ export default function AboutPage() {
                 With 3+ years of production experience, I specialize in shipping scalable models across{' '}
                 <span className="text-primary font-semibold">Computer Vision</span>,{' '}
                 <span className="text-accent font-semibold">NLP</span>, and{' '}
-                <span className="text-orange-500 font-semibold">Reinforcement Learning</span>. 
+                <span className="text-gradient font-semibold">Reinforcement Learning</span>. 
                 I bridge the gap between complex research and reliable software.
               </p>
               

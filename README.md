@@ -2,7 +2,7 @@
 
 A high-performance personal portfolio website built with Next.js 14, TypeScript, and Tailwind CSS. This project showcases my work as a Machine Learning Engineer, featuring optimized animations and a responsive design.
 
-![Portfolio Preview](https://portfolio.gson.io/opengraph-image)
+![Portfolio Preview](https://gson.io/opengraph-image)
 
 ## 🚀 Key Features
 
