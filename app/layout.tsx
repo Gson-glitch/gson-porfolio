@@ -38,7 +38,15 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: 'Gloryson Ondanje', url: SITE_URL }],
   creator: 'Gloryson Ondanje',
-  
+  icons: {
+      icon: [
+        { url: '/favicon.ico', sizes: 'any' },
+        { url: '/icon.svg', type: 'image/svg+xml' },
+      ],
+      apple: [
+        { url: '/apple-icon.png', sizes: '180x180', type: 'image/png' },
+      ],
+    },
   openGraph: {
     type: 'profile',
     firstName: 'Gloryson',
