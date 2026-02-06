@@ -5,6 +5,9 @@ import Layout from './components/Layout';
 import JsonLd from './components/JsonLd';
 import { SITE_URL, GOOGLE_VERIFICATION } from '@/config';
 
+const SITE_DESCRIPTION = 
+  'Machine Learning Engineer with 3+ years of experience in Computer Vision, Natural Language Processing, and Reinforcement Learning. Passionate about building intelligent systems using Python to solve real-world problems across diverse domains. Always learning, always building.';
+
 const inter = Inter({
   subsets: ['latin'],
   variable: '--font-inter',
@@ -23,8 +26,7 @@ export const metadata: Metadata = {
     default: 'Gloryson Ondanje | ML Engineer',
     template: '%s | Gloryson Ondanje',
   },
-  description:
-    'Machine Learning Engineer with 3+ years of experience in Computer Vision, NLP, and Reinforcement Learning. Building intelligent systems that solve real-world problems.',
+  description: SITE_DESCRIPTION,
   keywords: [
     'Gloryson Ondanje',
     'Machine Learning Engineer',
@@ -57,11 +59,10 @@ export const metadata: Metadata = {
     url: SITE_URL,
     siteName: 'Gloryson Ondanje Portfolio',
     title: 'Gloryson Ondanje | ML Engineer',
-    description:
-      'Machine Learning Engineer specializing in Computer Vision, NLP, and Reinforcement Learning',
+    description: SITE_DESCRIPTION,
     images: [
       {
-        url: '/opengraph-image.png',
+        url: '/images/opengraph-image.png',
         width: 1200,
         height: 630,
         alt: 'Gloryson Ondanje Portfolio',
@@ -71,9 +72,8 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Gloryson Ondanje | ML Engineer',
-    description:
-      'Machine Learning Engineer specializing in Computer Vision, NLP, and Reinforcement Learning',
-    images: ['/opengraph-image.png'],
+    description: SITE_DESCRIPTION,
+    images: ['/images/opengraph-image.png'],
   },
   robots: {
     index: true,

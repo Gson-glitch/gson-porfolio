@@ -9,7 +9,7 @@ export default function JsonLd() {
     givenName: 'Gloryson',
     familyName: 'Ondanje',
     url: SITE_URL,
-    image: `${SITE_URL}/opengraph-image.png`,
+    image: `${SITE_URL}/images/opengraph-image.png`,
     jobTitle: 'Machine Learning Engineer',
     worksFor: {
       '@type': 'Organization',
