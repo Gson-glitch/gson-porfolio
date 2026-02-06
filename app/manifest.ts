@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next';
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: 'Gloryson Ondanje | ML Engineer',
+    name: 'Gloryson Horace Ondanje | ML Engineer | AI Researcher',
     short_name: 'Gloryson',
     description: 'Machine Learning Engineer specializing in Computer Vision, NLP, and Reinforcement Learning',
     start_url: '/',

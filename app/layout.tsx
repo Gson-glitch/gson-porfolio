@@ -6,7 +6,7 @@ import JsonLd from './components/JsonLd';
 import { SITE_URL, GOOGLE_VERIFICATION } from '@/config';
 
 const SITE_DESCRIPTION = 
-  'Machine Learning Engineer with 3+ years of experience in Computer Vision, Natural Language Processing, and Reinforcement Learning. Passionate about building intelligent systems using Python to solve real-world problems across diverse domains. Always learning, always building.';
+  'Machine Learning Engineer with 3+ years of experience in Computer Vision, Natural Language Processing, and Reinforcement Learning.';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -23,7 +23,7 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: 'Gloryson Ondanje | ML Engineer',
+    default: 'Gloryson Horace Ondanje | ML Engineer | AI Researcher',
     template: '%s | Gloryson Ondanje',
   },
   description: SITE_DESCRIPTION,
@@ -58,7 +58,7 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: SITE_URL,
     siteName: 'Gloryson Ondanje Portfolio',
-    title: 'Gloryson Ondanje | ML Engineer',
+    title: 'Gloryson Horace Ondanje | ML Engineer | AI Researcher',
     description: SITE_DESCRIPTION,
     images: [
       {
@@ -71,7 +71,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Gloryson Ondanje | ML Engineer',
+    title: 'Gloryson Horace Ondanje | ML Engineer | AI Researcher',
     description: SITE_DESCRIPTION,
     images: ['/images/opengraph-image.png'],
   },
