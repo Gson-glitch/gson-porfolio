@@ -21,7 +21,7 @@ const nextConfig = {
       },
       {
         // Cache dynamic OG image with revalidation
-        source: '/opengraph-image',
+        source: '/api/og',
         headers: [
           {
             key: 'Cache-Control',

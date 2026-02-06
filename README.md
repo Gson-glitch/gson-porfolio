@@ -57,6 +57,9 @@ GITHUB_TOKEN=your_github_personal_access_token
 # Required for Google Search Console verification (HTML Tag method)
 GOOGLE_SITE_VERIFICATION=your_google_verification_string
 
+# Link to your portfolio site
+SITE_URL=http://localhost:3000
+
 ```
 
 ### How to get these values:
@@ -76,10 +79,12 @@ gson-portfolio/
 ├── app/
 │   ├── components/       # React components (UI, Layout)
 │   ├── data/            # Static data (projects, skills, experience)
-│   ├── api/             # API routes (GitHub integration)
+│   ├── api/             # API routes
 │   └── (pages)/         # Next.js pages
 ├── public/
+│   ├── animations/      # Lootie Files animations
 │   ├── certificates/    # PDF certificates
+│   ├── images/          # Images
 │   ├── thumbnails/      # Certificate thumbnails
 │   └── resume/          # Resume PDF
 └── scripts/             # Build scripts
